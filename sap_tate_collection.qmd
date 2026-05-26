@@ -1,0 +1,661 @@
+---
+title: "Statistical Analysis Plan: Artwork Dimensions, Copyright Status, and Temporal Patterns in the Tate Art Collection"
+author: "Student Number: 25351400"
+date: today
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    toc-title: "Contents"
+    code-fold: true
+    theme: flatly
+    highlight-style: github
+    df-print: paged
+execute:
+  warning: false
+  message: false
+bibliography: references.bib
+csl: apa.csl
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+# Load all required packages at the top of the document.
+# If running chunks interactively in RStudio, run this chunk FIRST.
+library(tidyverse)
+library(ggplot2)
+library(knitr)
+library(kableExtra)
+library(moments)
+library(car)
+library(broom)
+library(patchwork)
+library(lmtest)
+library(vcd)
+library(effectsize)
+library(MASS)
+```
+
+```{r}
+#| label: load-data
+#| cache: true
+
+# Load data directly from TidyTuesday GitHub repository
+artwork <- readr::read_csv(
+  'https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2021/2021-01-12/artwork.csv',
+  show_col_types = FALSE
+)
+
+cat("Dataset loaded:", nrow(artwork), "rows,", ncol(artwork), "columns\n")
+```
+
+---
+
+## Background
+
+The Tate Art Museum is one of the United Kingdom's foremost cultural institutions, housing a collection of approximately 70,000 artworks spanning five centuries of British and international art [@tate2014]. The collection metadata — released under the Creative Commons Public Domain CC0 licence and made publicly available through the Tate GitHub repository — records physical dimensions, medium, acquisition details, copyright status, and provenance for each work [@tate2014; @wickham2019]. This rich, real-world dataset provides an excellent opportunity to apply statistical reasoning to questions about how artworks vary over time, by medium, and by rights status.
+
+The dataset contains a number of well-documented challenges that make it a realistic test of analytical skill: the `medium` variable contains hundreds of loosely standardised text entries with substantial overlap; `year` spans multiple centuries and contains missing values; dimensional variables such as `width` and `height` exhibit strong right-skew due to a small number of extremely large installations; and the binary variable `thumbnailCopyright` contains missing observations whose mechanism is unknown [@muijs2010].
+
+Understanding how artwork dimensions relate to copyright status and year of creation is of both curatorial and scholarly interest. Copyright status may reflect acquisition era, medium type, or institutional policy, all of which are associated with physical scale. Similarly, temporal trends in artwork size have been documented in art-historical literature, with twentieth-century movements such as Abstract Expressionism and installation art associated with larger formats [@elkins2008].
+
+**Hypotheses and objectives:**
+
+- *H1*: There is a difference in width of artworks between copyright protected and non-protected artworks.
+- *H2*: Copyright status of thumbnails is not separate from type of medium used.
+- *H3*: The year of creation has a positive relationship with the width of the artwork, indicating that modern art tends to be larger.
+- *H4*: Year, height and copyright status account for a significant percentage of the variance in artwork width when considered together, but not individually.
+
+The purpose of this SAP is to detail, motivate, and implement the statistical methods that will be used to test each hypothesis, and to outline in advance the diagnostic, fallback and reporting strategies to be used.
+
+---
+
+## Methods and Results
+
+### Overview of the Data
+
+```{r}
+#| label: copyright-check
+
+copyright_missing <- artwork |>
+  summarise(
+    total_rows    = n(),
+    missing_n     = sum(is.na(thumbnailCopyright)),
+    missing_pct   = round(mean(is.na(thumbnailCopyright)) * 100, 1),
+    non_missing_n = sum(!is.na(thumbnailCopyright))
+  )
+
+kable(copyright_missing,
+      col.names = c("Total rows", "Missing (n)", "Missing (%)", "Non-missing (n)"),
+      caption   = "Table 1: Missingness in thumbnailCopyright across the full dataset.") |>
+  kable_styling(bootstrap_options = c("striped", "condensed"), full_width = FALSE)
+```
+No copyright information is available for the thumbnail images in this dataset snapshot (last updated October 2014) for all 69,201 rows. The variable thus will not be used as a grouping or predictor variable for any analysis. This is in line with the Tate's documentation that this version of the repository is not actively maintained [@tate2014].
+
+Throughout this SAP, a derived binary variable, acquisition_era (Pre-1950 or Post-1950) is created from the acquisitionYear variable. This threshold roughly equates to the post-war era in the UK when copyright law was extended considerably (Copyright Act 1956), and thus acquisition era can be used as a defensible conceptual proxy for copyright-related status. This proxy is used to answer all four research questions where `thumbnailCopyright` was originally indicated. Limitation is recorded in the Conclusions.
+
+```{r}
+#| label: tbl-overview
+
+tibble(
+  Variable  = c("width", "height", "year", "medium", "acquisitionYear"),
+  Type      = c("Continuous (mm)", "Continuous (mm)", "Continuous (year CE)",
+                "Categorical (character)", "Continuous → Binary proxy"),
+  Role      = c("Outcome (Q1, Q3, Q4)", "Predictor (Q4)", "Predictor (Q3, Q4)",
+                "Predictor (Q2)", "Source for acquisition_era (Q1, Q2, Q4)"),
+  `Observed range / summary` = c(
+    "3–11,960 mm; mean 323.5, median 175",
+    "6–37,500 mm; mean 346.4, median 190",
+    "1545–2012; mean 1867, median 1831",
+    "Hundreds of entries; collapsed to 9 groups",
+    "Dichotomised: Pre-1950 vs Post-1950"
+  ),
+  `Missing (n)` = c("3,367 (4.9%)", "3,342 (4.8%)", "5,397 (7.8%)",
+                    "~7,000 (~10%)", "502 (0.7%)")
+) |>
+  kable(booktabs = TRUE,
+        caption = "Table 2: Key variables used across all four research questions.") |>
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                full_width = FALSE)
+```
+
+The following data-preparation steps are shared across all four questions and would be applied before any question-specific analysis begins.
+
+```{r}
+#| label: shared-preparation
+
+artwork_clean <- artwork |>
+  filter(artistRole == "artist" | is.na(artistRole)) |>
+  filter(units == "mm" | is.na(units)) |>
+  mutate(
+    acquisition_era = case_when(
+      acquisitionYear <  1950 ~ "Pre-1950",
+      acquisitionYear >= 1950 ~ "Post-1950",
+      TRUE                    ~ NA_character_
+    ) |> factor(levels = c("Pre-1950", "Post-1950"))
+  )
+
+cat("Rows retained after shared cleaning:", nrow(artwork_clean), "\n")
+cat("Acquisition era distribution:\n")
+print(table(artwork_clean$acquisition_era, useNA = "ifany"))
+```
+
+### Question 1: Group Comparison — Width by Thumbnail Copyright Status
+
+#### Research Aim
+
+To find out if there is a systematic difference in the physical width of artworks, based on whether or not the thumbnail is copyright-protected (`thumbnailCopyright = TRUE`) and those for which it is not (`thumbnailCopyright = FALSE`).
+
+#### Variables and Data Types
+
+| Variable | Type | Role |
+|---|---|---|
+| `width` | Continuous numeric (mm) | Outcome |
+| `thumbnailCopyright` | Binary logical | Grouping factor |
+
+#### Data Preparation
+
+```{r}
+#| label: q1-preparation
+
+q1_data <- artwork_clean |>
+  filter(!is.na(width), !is.na(acquisition_era)) |>
+  droplevels()
+
+cat("Q1 complete-case sample size:", nrow(q1_data), "\n")
+cat("Group sizes:\n")
+print(table(q1_data$acquisition_era))
+
+width_p995 <- quantile(q1_data$width, 0.995, na.rm = TRUE)
+cat("\n99.5th percentile of width:", round(width_p995, 1), "mm\n")
+cat("Extreme values above this threshold:",
+    sum(q1_data$width > width_p995), "\n")
+```
+
+#### Proposed Method
+
+The Welch two-sample t-test is suggested as the main test [@field2013]. The Welch's variant (i.e. not Student's t-test) does not assume equal variance between groups, which is appropriate, as the groups are likely to be of different size and spread. The null hypothesis is that there is no difference between the population mean for `width` for the two copyright groups.
+
+If the normality assumption is not met (see Diagnostics), then a Wilcoxon rank-sum test (Mann–Whitney U) will be used. This is a non-parametric test, which compares the rank distributions of the two groups, and only requires that observations are independent and ordinal, which is easily satisfied here [@hollander2013].
+
+```{r}
+#| label: q1-test
+
+t_result <- t.test(width ~ acquisition_era, data = q1_data, var.equal = FALSE)
+print(t_result)
+
+cohens_d(width ~ acquisition_era, data = q1_data)
+```
+**Result:** *t*(26,368) = −93.94, *p* < 2.2 × 10⁻¹⁶. Mean width Pre-1950 = 198.97 mm; Post-1950 = 561.59 mm. This difference is quite large and statistically significant at ~363 mm (95% CI: [355, 370]). Cohen's *d* = −0.97 (95% CI: [−0.99, −0.95]) — a large effect by conventional benchmarks [@cohen1988].
+
+#### Assumptions
+
+1. Independence: Each artwork is a separate physical entity; observations are independent.
+2. Normality (Welch t-test only): The sampling distribution of the difference between two means is approximately normal. This is true for large samples, even if the data is not normally distributed, but if the data is extremely right skewed for the width variable, a transformation or the non-parametric alternative may be needed.
+3. No assumption of equal variances - Welch's test explicitly relaxes this assumption.
+
+#### Diagnostics and Model Checks
+
+```{r}
+#| label: q1-diagnostics
+
+p1 <- ggplot(q1_data, aes(x = width, fill = acquisition_era)) +
+  geom_histogram(bins = 60, alpha = 0.6, position = "identity") +
+  scale_x_log10(labels = scales::comma) +
+  labs(title = "Width distribution by acquisition era (log scale)",
+       x = "Width (mm, log scale)", y = "Count", fill = "") +
+  theme_minimal()
+
+p2 <- ggplot(q1_data,
+             aes(x = acquisition_era, y = width, fill = acquisition_era)) +
+  geom_violin(alpha = 0.4) +
+  geom_boxplot(width = 0.15, outlier.size = 0.5) +
+  scale_y_log10(labels = scales::comma) +
+  labs(title = "Width by acquisition era",
+       x = "", y = "Width (mm, log scale)") +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+p1 + p2
+
+q1_data |>
+  group_by(acquisition_era) |>
+  summarise(
+    n         = n(),
+    mean_mm   = round(mean(width), 1),
+    median_mm = round(median(width), 1),
+    sd_mm     = round(sd(width), 1),
+    skewness  = round(moments::skewness(width), 2)
+  ) |>
+  kable(caption = "Table 3: Descriptive statistics for width by acquisition era.") |>
+  kable_styling(bootstrap_options = c("striped", "condensed"))
+
+leveneTest(width ~ acquisition_era, data = q1_data)
+```
+
+#### Fallback Strategy
+
+The Wilcoxon rank-sum test will serve as the primary inference tool if the Shapiro–Wilk test (or inspection of Q–Q plots) suggests that the data are quite non-normal, and that the Central Limit Theorem is not likely to apply to the data in one or more of the groups (e.g., small sample size within one group after filtering). The results will be presented as median and interquartile range per group, *W* statistic and p value. An intermediate strategy, a log₁₀ transformation of `width`, will also be explored if the log transformed widths are approximately normal, the t-test can be used on the transformed scale, but back transformed means will be reported.
+
+```{r}
+#| label: q1-fallback
+
+wilcox.test(width ~ acquisition_era, data = q1_data, conf.int = TRUE)
+
+t.test(log10(width) ~ acquisition_era, data = q1_data, var.equal = FALSE)
+```
+
+**Fallback results:** Wilcoxon *W* = 160,237,398, *p* < 2.2 × 10⁻¹⁶; median location shift = −232 mm (95% CI: [−236, −228]). Log₁₀ *t*-test: *t*(33,780) = −147.55, *p* < 2.2 × 10⁻¹⁶; mean log₁₀(width) Pre-1950 = 2.206 (~161 mm), Post-1950 = 2.599 (~397 mm). The results of all three tests are consistent.
+
+#### Reporting and Interpretation
+
+Results will be presented as group means (or medians) with 95% confidence intervals, test statistic (t or W), degrees of freedom, p-value and effect size (Cohen's d or rank-biserial r). The table will be accompanied by a violin plot with the boxplot overlaid. If the result is p < .05, it would be evidence to reject the hypothesis of equal means, in other words, evidence of a statistically identifiable difference in the width of the artwork between the two copyright groups. Effect size will put into perspective if there is a difference and if that difference is practically significant, in the context of the size of the collection.
+
+---
+
+### Question 2: Relationship Between Categorical Variables — Medium and Copyright Status
+
+#### Research Aim
+
+To determine if there is a relationship between the type of artistic medium used, and the copyright status of the thumbnail.
+
+#### Variables and Data Types
+
+| Variable | Type | Role |
+|---|---|---|
+| `medium` | Categorical (many levels, character) | Predictor |
+| `thumbnailCopyright` | Binary logical | Outcome |
+
+#### Data Preparation
+
+The `medium` variable comprises several hundred different raw values, many of which have a high degree of similarity (e.g. "Oil paint on canvas", "Oil on canvas", "oil on canvas"). Before any contingency analysis can be done, a collapsing strategy must be developed.
+
+```{r}
+#| label: q2-preparation
+
+q2_data <- artwork_clean |>
+  filter(!is.na(medium), !is.na(acquisition_era)) |>
+  mutate(
+    medium_group = case_when(
+      str_detect(str_to_lower(medium), "oil")                           ~ "Oil paint",
+      str_detect(str_to_lower(medium), "watercolour|watercolor")        ~ "Watercolour",
+      str_detect(str_to_lower(medium), "graphite|pencil")               ~ "Graphite/Pencil",
+      str_detect(str_to_lower(medium), "print|etching|lithograph|screen") ~ "Print",
+      str_detect(str_to_lower(medium), "photograph|photo")              ~ "Photography",
+      str_detect(str_to_lower(medium), "ink")                           ~ "Ink",
+      str_detect(str_to_lower(medium), "acrylic")                       ~ "Acrylic",
+      str_detect(str_to_lower(medium), "chalk|pastel")                  ~ "Chalk/Pastel",
+      TRUE                                                               ~ "Other"
+    ) |> factor()
+  ) |>
+  droplevels()
+
+cat("Q2 sample size:", nrow(q2_data), "\n")
+cat("Medium groups (descending frequency):\n")
+print(sort(table(q2_data$medium_group), decreasing = TRUE))
+```
+
+#### Proposed Method
+
+A Pearson chi-squared test of independence is suggested [@agresti2002]. This test is to test the hypothesis of independence of the distribution of copyright status across all medium groups. The test is suitable if:
+
+- Both variables are categorical.
+- Observations are independent.
+- The number of cells in the expected cell count is large enough.
+
+```{r}
+#| label: q2-test
+
+# Build contingency table using acquisition_era (the proxy variable)
+ct <- table(q2_data$medium_group, q2_data$acquisition_era)
+
+cat("Contingency table: medium group × acquisition era\n")
+print(ct)
+
+cat("\nRow proportions:\n")
+print(round(prop.table(ct, margin = 1), 3))
+
+chi_result <- chisq.test(ct)
+print(chi_result)
+
+vcd::assocstats(ct)
+```
+
+#### Assumptions
+
+1. Independence of observations: Every artwork is recorded once and the observations are independent.
+2. Expected cell frequencies ≥ 5: At least 80% of cells should have an expected count of 5 or more, with no cells having an expected count of less than 1 [@cochran1954].
+3. Random sampling: Satisfied — the data set is the complete Tate collection.
+
+```{r}
+#| label: q2-expected-counts
+
+cat("Minimum expected cell count:", round(min(chi_result$expected), 2), "\n")
+cat("Proportion of cells with expected count < 5:",
+    round(mean(chi_result$expected < 5), 3), "\n")
+```
+
+#### Diagnostics and Model Checks
+
+```{r}
+#| label: q2-diagnostics
+
+# Proportional bar chart replacing the failing vcd::mosaic()
+ct_df <- as.data.frame(ct) |>
+  rename(medium_group = Var1, acquisition_era = Var2, count = Freq) |>
+  group_by(medium_group) |>
+  mutate(prop = count / sum(count)) |>
+  ungroup()
+
+ggplot(ct_df, aes(x = reorder(medium_group, -prop, function(x) x[2]),
+                  y = prop, fill = acquisition_era)) +
+  geom_col(position = "fill") +
+  geom_hline(yintercept = 0.5, linetype = "dashed", colour = "grey40") +
+  scale_y_continuous(labels = scales::percent) +
+  scale_fill_manual(values = c("Pre-1950" = "#4e79a7", "Post-1950" = "#f28e2b")) +
+  labs(title    = "Proportion of Pre-1950 vs Post-1950 acquisitions by medium group",
+       subtitle = "Sorted by descending Post-1950 proportion",
+       x = "Medium group", y = "Proportion", fill = "Acquisition era") +
+  coord_flip() +
+  theme_minimal()
+
+# Standardised residuals: |z| > 2 indicates cells driving the association
+cat("\nStandardised residuals:\n")
+round(chi_result$stdres, 2)
+```
+
+Standardised residuals: Acrylic (+15), Photography (+8) and Print (+7) in the Post-1950 column have the largest positive residuals, while Graphite/Pencil (+48) in the Pre-1950 column is the single strongest driver of the association, reflecting the dominance of historic drawing works acquired before the mid-twentieth century.
+Cells with an absolute value of the standardised residual greater than 2 are those which contribute disproportionately to the chi-squared statistic and will be explicitly mentioned in the results.
+
+#### Fallback Strategy
+
+Two strategies will be used in a sequence if the expected-count assumption is not satisfied for more than 20% of cells. Small medium groups will be combined together in "Other" category to inflate expected counts. If violations remain after merging, Fisher's exact test will be used, which does not assume that cells contain a large number of counts and is suitable for sparse tables, but is more time consuming when table size is large [@agresti2002].
+
+```{r}
+#| label: q2-fallback
+#| eval: false
+
+# Fallback: Fisher's exact test (computationally intensive for large tables)
+# Use simulate.p.value = TRUE for large tables
+fisher.test(ct, simulate.p.value = TRUE, B = 10000)
+```
+
+#### Reporting and Interpretation
+
+A contingency table of observed and expected counts, a mosaic plot, the chi-squared statistic, the degrees of freedom and the *p*-value, and Cramér's *V*, an effect size measure, will be included in the results. Cramér's V varies between 0 (no association) and 1 (perfect association) and values higher than 0.30 are considered a moderate effect in this context [@cohen1988]. If the null hypothesis is rejected, this means that the copyright status is not evenly distributed across media and that further investigation of the association by media group is warranted, using standardised residuals.
+
+---
+
+### Question 3: Continuous Outcome and One Explanatory Variable — Width Explained by Year
+
+#### Research Aim
+
+To see if the year that the artwork was created is a statistically significant predictor of the width of the artwork and to measure the direction and strength of the relationship.
+
+#### Variables and Data Types
+
+| Variable | Type | Role |
+|---|---|---|
+| `width` | Continuous numeric (mm) | Outcome |
+| `year` | Continuous numeric (year CE) | Predictor |
+
+#### Data Preparation
+
+```{r}
+#| label: q3-preparation
+
+q3_data <- artwork_clean |>
+  filter(!is.na(width), !is.na(year)) |>
+  dplyr::select(width, year)
+
+cat("Q3 complete-case sample size:", nrow(q3_data), "\n")
+cat("Year range:", range(q3_data$year), "\n")
+cat("Width range:", range(q3_data$width), "\n")
+
+# Exploratory scatter plot with linear and LOESS smoothers
+ggplot(q3_data, aes(x = year, y = width)) +
+  geom_point(alpha = 0.07, size = 0.4, colour = "steelblue") +
+  geom_smooth(method = "lm",    colour = "firebrick", se = TRUE) +
+  geom_smooth(method = "loess", colour = "darkgreen", linetype = "dashed",
+              se = FALSE) +
+  scale_y_log10(labels = scales::comma) +
+  labs(title    = "Artwork width vs. year of creation",
+       subtitle = "Red: OLS fit; Green dashed: LOESS smoother (log y-axis)",
+       x = "Year of creation", y = "Width (mm, log scale)") +
+  theme_minimal()
+```
+**Observed:** N = 60,344. A positive trend is seen throughout the entire range of the scatter plot. The LOESS smoother follows the linear fit fairly closely, but shows some acceleration after ~1950, indicating that a log transformed outcome might be more suitable for linearising the relationship.
+
+Artworks prior to 1500 will probably be a small, non-representative subset and will be evaluated using leverage and Cook's distance diagnostics. If the residuals show signs of heteroscedasticity, then a log₁₀ transformation of width will be tried.
+
+
+#### Proposed Method
+
+Simple ordinary least squares (OLS) linear regression of `width` on `year` is suggested [@field2013]. The form of the model is:
+
+$$\text{width}_i = \beta_0 + \beta_1 \cdot \text{year}_i + \varepsilon_i$$
+
+where $\beta_1$ is the expected change in width (in mm) for an increase of one year of creation. Before deciding to use the linear model, the LOESS smoother in the exploratory plot will be used to determine if the linear model is a reasonable approximation.
+
+```{r}
+#| label: q3-model
+
+m3 <- lm(width ~ year, data = q3_data)
+summary(m3)
+
+tidy(m3, conf.int = TRUE) |>
+  kable(digits = 4,
+        caption = "Table 5: Q3 — Simple linear regression: width ~ year.") |>
+  kable_styling(bootstrap_options = c("striped", "condensed"))
+
+glance(m3) |>
+  dplyr::select(r.squared, adj.r.squared, sigma, statistic, p.value, nobs)
+```
+
+#### Assumptions
+
+1. Linearity: The relationship between year and width is approximately linear (evaluated by the residual versus fitted plot and LOESS smoother).
+2. Errors are independent from each other: Artworks produced in the same year may show temporal clustering – this will be reported but not corrected in a SAP-level analysis.
+3. Homoscedasticity: Residual variance is the same for every fitted value (evaluated by using a scale–location plot).
+4. Normality of residuals: Residuals are close to normally distributed (checked using Q–Q plot and Shapiro–Wilk on a random sample of the residuals).
+5. No influential outliers: No one observation has an undue influence on the regression slope.
+
+#### Diagnostics and Model Checks
+
+```{r}
+#| label: q3-diagnostics
+
+par(mfrow = c(2, 2))
+plot(m3, main = "Q3 OLS diagnostics")
+par(mfrow = c(1, 1))
+
+bptest(m3)
+dwtest(m3)
+
+cooksd3 <- cooks.distance(m3)
+cat("Influential observations (Cook's D > 4/n):",
+    sum(cooksd3 > 4 / nrow(q3_data)), "\n")
+```
+
+#### Fallback Strategy
+
+Two strategies will be used in the following order if residuals are severely non-normal or heteroscedastic:
+
+1. **Log₁₀ transformation of `width`**: Fit the model `log10(width) ~ year`. In this context, the most usual solution to right-skewed outcomes is this one [@tukey1977]. The coefficients are then interpreted on the log scale (multiplicative change per year).
+2. Robust regression with MASS::rlm(): Downweights influential observations without transformation, giving coefficient estimates that are less sensitive to outliers.
+
+```{r}
+#| label: q3-fallback
+
+m3_log <- lm(log10(width) ~ year, data = q3_data)
+summary(m3_log)
+
+tidy(m3_log, conf.int = TRUE) |>
+  kable(digits = 6,
+        caption = "Table 6: Q3 preferred model — log10(width) ~ year.") |>
+  kable_styling(bootstrap_options = c("striped", "condensed"))
+
+par(mfrow = c(2, 2))
+plot(m3_log, main = "Q3 log-model diagnostics")
+par(mfrow = c(1, 1))
+
+bptest(m3_log)
+```
+
+#### Reporting and Interpretation
+
+The results will be displayed as a regression table showing the estimated slope ( $\hat{\beta}_1$ ), the 95% confidence interval of the slope, the standard error of the slope, the t-statistic and p-value for the slope, the R2 for the model and the adjusted R2 for the model. The table will be accompanied by a scatter graph of the data and the regression line and a confidence band. If the value of $\hat{\beta}_1$ were positive and statistically significant, it would suggest that artworks from more recent years are wider, which is in line with the art-historical hypothesis of an increase in the size of the format of modern art.
+
+---
+
+### Question 4: Continuous Outcome and Multiple Explanatory Variables — Width Explained by Year, Height, and Copyright Status
+
+#### Research Aim
+
+To determine whether the joint effect of the year of creation, artwork height and thumbnail copyright status is able to account for variation in artwork width better than any of these three factors alone and to determine the individual contribution of each of these three factors once the others are taken into account.
+
+#### Variables and Data Types
+
+| Variable | Type | Role |
+|---|---|---|
+| `width` | Continuous numeric (mm) | Outcome |
+| `year` | Continuous numeric | Predictor |
+| `height` | Continuous numeric (mm) | Predictor |
+| `thumbnailCopyright` | Binary (TRUE/FALSE) | Predictor |
+
+#### Data Preparation
+
+```{r}
+#| label: q4-preparation
+
+q4_data <- artwork_clean |>
+  filter(!is.na(width), !is.na(year),
+         !is.na(height), !is.na(acquisition_era)) |>
+  dplyr::select(width, year, height, acquisition_era) |>
+  mutate(
+    year_scaled   = scale(year)[, 1],
+    height_scaled = scale(height)[, 1]
+  ) |>
+  droplevels()
+
+cat("Q4 complete-case sample size:", nrow(q4_data), "\n")
+cat("Rows dropped (any missing):",
+    nrow(artwork_clean) - nrow(q4_data), "\n")
+cat("Proportion dropped:",
+    round(1 - nrow(q4_data) / nrow(artwork_clean), 3), "\n")
+
+# Non-random dropout check
+artwork_clean |>
+  mutate(missing_q4 = is.na(width) | is.na(year) | is.na(height)) |>
+  group_by(acquisition_era) |>
+  summarise(prop_missing = round(mean(missing_q4, na.rm = TRUE), 3)) |>
+  kable(caption = "Table 7: Proportion missing Q4 variables by acquisition era.") |>
+  kable_styling(bootstrap_options = c("striped", "condensed"),
+                full_width = FALSE)
+```
+
+Here, note that listwise deletion of missing values is used (complete-case analysis). The percentage of rows for which no data is available due to missing data will be reported and a sensitivity analysis will be conducted to determine if the missingness is random across copyright groups (or if there is a possibility of non-random dropout that may affect the estimates).
+
+```{r}
+#| label: q4-missingness
+
+cat("Rows with any missing value in Q4 variables:",
+    nrow(artwork_clean) - nrow(q4_data), "\n")
+cat("Proportion dropped:",
+    round(1 - nrow(q4_data) / nrow(artwork_clean), 3), "\n")
+```
+
+#### Proposed Method
+
+**Multiple OLS linear regression** is proposed [@field2013]:
+
+$$\text{width}_i = \beta_0 + \beta_1 \cdot \text{year}_i + \beta_2 \cdot \text{height}_i + \beta_3 \cdot \text{copyright}_i + \varepsilon_i$$
+
+where $\text{copyright}_i$ is coded 1 if `thumbnailCopyright = TRUE` and 0 otherwise. Standardised predictors will also be fitted to allow direct comparison of effect magnitudes.
+
+```{r}
+#| label: q4-model
+
+# Log-transformed outcome (preferred given Q3 findings)
+m4 <- lm(log10(width) ~ year + height + acquisition_era, data = q4_data)
+summary(m4)
+
+tidy(m4, conf.int = TRUE) |>
+  kable(digits = 5,
+        caption = "Table 8: Q4 multiple regression — log10(width) ~ year + height + acquisition_era.") |>
+  kable_styling(bootstrap_options = c("striped", "condensed"))
+
+glance(m4) |>
+  dplyr::select(r.squared, adj.r.squared, sigma, statistic, p.value, nobs)
+
+# Standardised coefficients for effect size comparison
+m4_std <- lm(log10(width) ~ year_scaled + height_scaled + acquisition_era,
+             data = q4_data)
+tidy(m4_std, conf.int = TRUE) |>
+  kable(digits = 4,
+        caption = "Table 9: Q4 standardised coefficients.") |>
+  kable_styling(bootstrap_options = c("striped", "condensed"))
+```
+
+#### Assumptions
+
+All the assumptions in Question 3 are true, and:
+
+4. No multicollinearity: Predictors are not highly correlated with each other to the extent that the coefficient estimates are not stable.
+5. Additivity: The effect of the predictors on `width` is approximately additive (no interaction terms needed at this stage).
+
+#### Diagnostics and Model Checks
+
+```{r}
+#| label: q4-diagnostics
+
+par(mfrow = c(2, 2))
+plot(m4, main = "Q4 regression diagnostics")
+par(mfrow = c(1, 1))
+
+cat("Variance Inflation Factors:\n")
+vif(m4)
+
+bptest(m4)
+
+cat("Influential observations (Cook's D > 4/n):",
+    sum(cooks.distance(m4) > 4 / nrow(q4_data)), "\n")
+
+avPlots(m4, main = "Added-variable plots — Q4 predictors")
+```
+
+#### Fallback Strategy
+
+| Problem detected | Strategy |
+|---|---|
+| Non-normal residuals / heteroscedasticity | Log₁₀-transform `width`; re-run model |
+| High multicollinearity (VIF > 10) | Remove or combine collinear predictors; report correlation matrix |
+| Many influential points | Robust regression using `MASS::rlm()` |
+| Non-linearity in `year` or `height` | Add quadratic term or use generalised additive model (`mgcv::gam()`) |
+
+```{r}
+#| label: q4-fallback
+
+m4_robust <- rlm(log10(width) ~ year + height + acquisition_era,
+                 data = q4_data)
+summary(m4_robust)
+```
+
+#### Reporting and Interpretation
+
+Results will be reported as a regression table (Table format) with the unstandardised coefficients, standardised coefficients, 95% confidence intervals, t-statistics, and p-values, as well as $R^2$, adjusted $R^2$ and model F-statistic. An added-variable plot will illustrate the partial relationship of each predictor with `width` controlling for the others. The correlation between height and aspect ratio would suggest that a positive coefficient for `height' is to be expected and is statistically significant. If there is an independent temporal trend in addition to size correlation, there should be a significant coefficient for the year. The coefficient of the copyright_status variable would tell us if there is a systematic difference in width by year and height between copyrighted and non-copyrighted works, a more subtle result than the bivariate comparison in Question 1.
+
+---
+
+## Conclusions
+
+This Statistical Analysis Plan describes a principled and reproducible approach to investigation of four different questions regarding the Tate art collection. The plan starts with simple group comparison (Q1) and advances to categorical association (Q2) to simple and multiple regression (Q3, Q4), which are increasingly complex analyses that correspond to the multi-faceted nature of the data. In each case the proposed primary method is based on the type of variables, the research question and sensible prior knowledge about the structure of the data. Extensive diagnostic procedures are explicitly defined in advance to protect against assumption violations, and pre-defined fallback strategies ensure that the analysis is valid even if the distributional assumptions are violated. The messy variable medium and the significant amount of missing data in dimensional variables (thumbnailCopyright) have been given special attention as they are variables where preparation decisions could significantly impact results if not dealt with thoughtfully. The entire analytical pipeline is documented and can be reproduced from scratch using the reproducible R code in this document and open-source R packages.
+
+---
+
+## Literature Cited
+
+::: {#refs}
+:::

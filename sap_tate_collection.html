@@ -1,0 +1,2182 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Student Number: 25351400">
+<meta name="dcterms.date" content="2026-05-26">
+
+<title>Statistical Analysis Plan: Artwork Dimensions, Copyright Status, and Temporal Patterns in the Tate Art Collection</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="sap_tate_collection_files/libs/clipboard/clipboard.min.js"></script>
+<script src="sap_tate_collection_files/libs/quarto-html/quarto.js"></script>
+<script src="sap_tate_collection_files/libs/quarto-html/popper.min.js"></script>
+<script src="sap_tate_collection_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="sap_tate_collection_files/libs/quarto-html/anchor.min.js"></script>
+<link href="sap_tate_collection_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="sap_tate_collection_files/libs/quarto-html/quarto-syntax-highlighting-de84f8d6bb715db06a919283c2d1e787.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="sap_tate_collection_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="sap_tate_collection_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="sap_tate_collection_files/libs/bootstrap/bootstrap-8376ee84cb8298a0560393d3b353343d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="sap_tate_collection_files/libs/kePrint-0.0.1/kePrint.js"></script>
+
+<link href="sap_tate_collection_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+<link href="sap_tate_collection_files/libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+
+<script src="sap_tate_collection_files/libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contents</h2>
+   
+  <ul>
+  <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background">Background</a></li>
+  <li><a href="#methods-and-results" id="toc-methods-and-results" class="nav-link" data-scroll-target="#methods-and-results">Methods and Results</a>
+  <ul class="collapse">
+  <li><a href="#overview-of-the-data" id="toc-overview-of-the-data" class="nav-link" data-scroll-target="#overview-of-the-data">Overview of the Data</a></li>
+  <li><a href="#question-1-group-comparison-width-by-thumbnail-copyright-status" id="toc-question-1-group-comparison-width-by-thumbnail-copyright-status" class="nav-link" data-scroll-target="#question-1-group-comparison-width-by-thumbnail-copyright-status">Question 1: Group Comparison — Width by Thumbnail Copyright Status</a></li>
+  <li><a href="#question-2-relationship-between-categorical-variables-medium-and-copyright-status" id="toc-question-2-relationship-between-categorical-variables-medium-and-copyright-status" class="nav-link" data-scroll-target="#question-2-relationship-between-categorical-variables-medium-and-copyright-status">Question 2: Relationship Between Categorical Variables — Medium and Copyright Status</a></li>
+  <li><a href="#question-3-continuous-outcome-and-one-explanatory-variable-width-explained-by-year" id="toc-question-3-continuous-outcome-and-one-explanatory-variable-width-explained-by-year" class="nav-link" data-scroll-target="#question-3-continuous-outcome-and-one-explanatory-variable-width-explained-by-year">Question 3: Continuous Outcome and One Explanatory Variable — Width Explained by Year</a></li>
+  <li><a href="#question-4-continuous-outcome-and-multiple-explanatory-variables-width-explained-by-year-height-and-copyright-status" id="toc-question-4-continuous-outcome-and-multiple-explanatory-variables-width-explained-by-year-height-and-copyright-status" class="nav-link" data-scroll-target="#question-4-continuous-outcome-and-multiple-explanatory-variables-width-explained-by-year-height-and-copyright-status">Question 4: Continuous Outcome and Multiple Explanatory Variables — Width Explained by Year, Height, and Copyright Status</a></li>
+  </ul></li>
+  <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions">Conclusions</a></li>
+  <li><a href="#literature-cited" id="toc-literature-cited" class="nav-link" data-scroll-target="#literature-cited">Literature Cited</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Statistical Analysis Plan: Artwork Dimensions, Copyright Status, and Temporal Patterns in the Tate Art Collection</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Student Number: 25351400 </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 26, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data directly from TidyTuesday GitHub repository</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>artwork <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">'https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2021/2021-01-12/artwork.csv'</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="cn">FALSE</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Dataset loaded:"</span>, <span class="fu">nrow</span>(artwork), <span class="st">"rows,"</span>, <span class="fu">ncol</span>(artwork), <span class="st">"columns</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Dataset loaded: 69201 rows, 20 columns</code></pre>
+</div>
+</div>
+<hr>
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
+<p>The Tate Art Museum is one of the United Kingdom’s foremost cultural institutions, housing a collection of approximately 70,000 artworks spanning five centuries of British and international art <span class="citation" data-cites="tate2014">(<a href="#ref-tate2014" role="doc-biblioref">Tate, 2014</a>)</span>. The collection metadata — released under the Creative Commons Public Domain CC0 licence and made publicly available through the Tate GitHub repository — records physical dimensions, medium, acquisition details, copyright status, and provenance for each work <span class="citation" data-cites="tate2014 wickham2019">(<a href="#ref-tate2014" role="doc-biblioref">Tate, 2014</a>; <a href="#ref-wickham2019" role="doc-biblioref">Wickham &amp; Grolemund, 2019</a>)</span>. This rich, real-world dataset provides an excellent opportunity to apply statistical reasoning to questions about how artworks vary over time, by medium, and by rights status.</p>
+<p>The dataset contains a number of well-documented challenges that make it a realistic test of analytical skill: the <code>medium</code> variable contains hundreds of loosely standardised text entries with substantial overlap; <code>year</code> spans multiple centuries and contains missing values; dimensional variables such as <code>width</code> and <code>height</code> exhibit strong right-skew due to a small number of extremely large installations; and the binary variable <code>thumbnailCopyright</code> contains missing observations whose mechanism is unknown <span class="citation" data-cites="muijs2010">(<a href="#ref-muijs2010" role="doc-biblioref">Muijs, 2010</a>)</span>.</p>
+<p>Understanding how artwork dimensions relate to copyright status and year of creation is of both curatorial and scholarly interest. Copyright status may reflect acquisition era, medium type, or institutional policy, all of which are associated with physical scale. Similarly, temporal trends in artwork size have been documented in art-historical literature, with twentieth-century movements such as Abstract Expressionism and installation art associated with larger formats <span class="citation" data-cites="elkins2008">(<a href="#ref-elkins2008" role="doc-biblioref">Elkins, 2008</a>)</span>.</p>
+<p><strong>Hypotheses and objectives:</strong></p>
+<ul>
+<li><em>H1</em>: There is a difference in width of artworks between copyright protected and non-protected artworks.</li>
+<li><em>H2</em>: Copyright status of thumbnails is not separate from type of medium used.</li>
+<li><em>H3</em>: The year of creation has a positive relationship with the width of the artwork, indicating that modern art tends to be larger.</li>
+<li><em>H4</em>: Year, height and copyright status account for a significant percentage of the variance in artwork width when considered together, but not individually.</li>
+</ul>
+<p>The purpose of this SAP is to detail, motivate, and implement the statistical methods that will be used to test each hypothesis, and to outline in advance the diagnostic, fallback and reporting strategies to be used.</p>
+<hr>
+</section>
+<section id="methods-and-results" class="level2">
+<h2 class="anchored" data-anchor-id="methods-and-results">Methods and Results</h2>
+<section id="overview-of-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="overview-of-the-data">Overview of the Data</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>copyright_missing <span class="ot">&lt;-</span> artwork <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_rows    =</span> <span class="fu">n</span>(),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">missing_n     =</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(thumbnailCopyright)),</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">missing_pct   =</span> <span class="fu">round</span>(<span class="fu">mean</span>(<span class="fu">is.na</span>(thumbnailCopyright)) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">non_missing_n =</span> <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(thumbnailCopyright))</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(copyright_missing,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Total rows"</span>, <span class="st">"Missing (n)"</span>, <span class="st">"Missing (%)"</span>, <span class="st">"Non-missing (n)"</span>),</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption   =</span> <span class="st">"Table 1: Missingness in thumbnailCopyright across the full dataset."</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"condensed"</span>), <span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table class="table table-striped table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Table 1: Missingness in thumbnailCopyright across the full dataset.</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">Total rows</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Missing (n)</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Missing (%)</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Non-missing (n)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">69201</td>
+<td style="text-align: right;">69201</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p>No copyright information is available for the thumbnail images in this dataset snapshot (last updated October 2014) for all 69,201 rows. The variable thus will not be used as a grouping or predictor variable for any analysis. This is in line with the Tate’s documentation that this version of the repository is not actively maintained <span class="citation" data-cites="tate2014">(<a href="#ref-tate2014" role="doc-biblioref">Tate, 2014</a>)</span>.</p>
+<p>Throughout this SAP, a derived binary variable, acquisition_era (Pre-1950 or Post-1950) is created from the acquisitionYear variable. This threshold roughly equates to the post-war era in the UK when copyright law was extended considerably (Copyright Act 1956), and thus acquisition era can be used as a defensible conceptual proxy for copyright-related status. This proxy is used to answer all four research questions where <code>thumbnailCopyright</code> was originally indicated. Limitation is recorded in the Conclusions.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Variable  =</span> <span class="fu">c</span>(<span class="st">"width"</span>, <span class="st">"height"</span>, <span class="st">"year"</span>, <span class="st">"medium"</span>, <span class="st">"acquisitionYear"</span>),</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Type      =</span> <span class="fu">c</span>(<span class="st">"Continuous (mm)"</span>, <span class="st">"Continuous (mm)"</span>, <span class="st">"Continuous (year CE)"</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Categorical (character)"</span>, <span class="st">"Continuous → Binary proxy"</span>),</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Role      =</span> <span class="fu">c</span>(<span class="st">"Outcome (Q1, Q3, Q4)"</span>, <span class="st">"Predictor (Q4)"</span>, <span class="st">"Predictor (Q3, Q4)"</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Predictor (Q2)"</span>, <span class="st">"Source for acquisition_era (Q1, Q2, Q4)"</span>),</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Observed range / summary</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"3–11,960 mm; mean 323.5, median 175"</span>,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"6–37,500 mm; mean 346.4, median 190"</span>,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"1545–2012; mean 1867, median 1831"</span>,</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Hundreds of entries; collapsed to 9 groups"</span>,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Dichotomised: Pre-1950 vs Post-1950"</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Missing (n)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"3,367 (4.9%)"</span>, <span class="st">"3,342 (4.8%)"</span>, <span class="st">"5,397 (7.8%)"</span>,</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"~7,000 (~10%)"</span>, <span class="st">"502 (0.7%)"</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">booktabs =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">caption =</span> <span class="st">"Table 2: Key variables used across all four research questions."</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>),</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>                <span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="tbl-overview" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-overview-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Table 2: Key variables used across all four research questions.
+</figcaption>
+<div aria-describedby="tbl-overview-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="table table-striped table-hover table-condensed do-not-create-environment cell caption-top table-sm small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Variable</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Type</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Role</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Observed range / summary</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Missing (n)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">width</td>
+<td style="text-align: left;">Continuous (mm)</td>
+<td style="text-align: left;">Outcome (Q1, Q3, Q4)</td>
+<td style="text-align: left;">3–11,960 mm; mean 323.5, median 175</td>
+<td style="text-align: left;">3,367 (4.9%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">height</td>
+<td style="text-align: left;">Continuous (mm)</td>
+<td style="text-align: left;">Predictor (Q4)</td>
+<td style="text-align: left;">6–37,500 mm; mean 346.4, median 190</td>
+<td style="text-align: left;">3,342 (4.8%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">year</td>
+<td style="text-align: left;">Continuous (year CE)</td>
+<td style="text-align: left;">Predictor (Q3, Q4)</td>
+<td style="text-align: left;">1545–2012; mean 1867, median 1831</td>
+<td style="text-align: left;">5,397 (7.8%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">medium</td>
+<td style="text-align: left;">Categorical (character)</td>
+<td style="text-align: left;">Predictor (Q2)</td>
+<td style="text-align: left;">Hundreds of entries; collapsed to 9 groups</td>
+<td style="text-align: left;">~7,000 (~10%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">acquisitionYear</td>
+<td style="text-align: left;">Continuous → Binary proxy</td>
+<td style="text-align: left;">Source for acquisition_era (Q1, Q2, Q4)</td>
+<td style="text-align: left;">Dichotomised: Pre-1950 vs Post-1950</td>
+<td style="text-align: left;">502 (0.7%)</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>The following data-preparation steps are shared across all four questions and would be applied before any question-specific analysis begins.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>artwork_clean <span class="ot">&lt;-</span> artwork <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(artistRole <span class="sc">==</span> <span class="st">"artist"</span> <span class="sc">|</span> <span class="fu">is.na</span>(artistRole)) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(units <span class="sc">==</span> <span class="st">"mm"</span> <span class="sc">|</span> <span class="fu">is.na</span>(units)) <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">acquisition_era =</span> <span class="fu">case_when</span>(</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>      acquisitionYear <span class="sc">&lt;</span>  <span class="dv">1950</span> <span class="sc">~</span> <span class="st">"Pre-1950"</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>      acquisitionYear <span class="sc">&gt;=</span> <span class="dv">1950</span> <span class="sc">~</span> <span class="st">"Post-1950"</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span>                    <span class="sc">~</span> <span class="cn">NA_character_</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span> <span class="fu">factor</span>(<span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Pre-1950"</span>, <span class="st">"Post-1950"</span>))</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Rows retained after shared cleaning:"</span>, <span class="fu">nrow</span>(artwork_clean), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows retained after shared cleaning: 66907 </code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Acquisition era distribution:</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Acquisition era distribution:</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">table</span>(artwork_clean<span class="sc">$</span>acquisition_era, <span class="at">useNA =</span> <span class="st">"ifany"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ Pre-1950 Post-1950      &lt;NA&gt; 
+    42912     23950        45 </code></pre>
+</div>
+</div>
+</section>
+<section id="question-1-group-comparison-width-by-thumbnail-copyright-status" class="level3">
+<h3 class="anchored" data-anchor-id="question-1-group-comparison-width-by-thumbnail-copyright-status">Question 1: Group Comparison — Width by Thumbnail Copyright Status</h3>
+<section id="research-aim" class="level4">
+<h4 class="anchored" data-anchor-id="research-aim">Research Aim</h4>
+<p>To find out if there is a systematic difference in the physical width of artworks, based on whether or not the thumbnail is copyright-protected (<code>thumbnailCopyright = TRUE</code>) and those for which it is not (<code>thumbnailCopyright = FALSE</code>).</p>
+</section>
+<section id="variables-and-data-types" class="level4">
+<h4 class="anchored" data-anchor-id="variables-and-data-types">Variables and Data Types</h4>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Type</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>width</code></td>
+<td>Continuous numeric (mm)</td>
+<td>Outcome</td>
+</tr>
+<tr class="even">
+<td><code>thumbnailCopyright</code></td>
+<td>Binary logical</td>
+<td>Grouping factor</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="data-preparation" class="level4">
+<h4 class="anchored" data-anchor-id="data-preparation">Data Preparation</h4>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>q1_data <span class="ot">&lt;-</span> artwork_clean <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(width), <span class="sc">!</span><span class="fu">is.na</span>(acquisition_era)) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">droplevels</span>()</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Q1 complete-case sample size:"</span>, <span class="fu">nrow</span>(q1_data), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Q1 complete-case sample size: 64115 </code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Group sizes:</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Group sizes:</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">table</span>(q1_data<span class="sc">$</span>acquisition_era))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ Pre-1950 Post-1950 
+    41448     22667 </code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>width_p995 <span class="ot">&lt;-</span> <span class="fu">quantile</span>(q1_data<span class="sc">$</span>width, <span class="fl">0.995</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">99.5th percentile of width:"</span>, <span class="fu">round</span>(width_p995, <span class="dv">1</span>), <span class="st">"mm</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+99.5th percentile of width: 2503.4 mm</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Extreme values above this threshold:"</span>,</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>(q1_data<span class="sc">$</span>width <span class="sc">&gt;</span> width_p995), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Extreme values above this threshold: 321 </code></pre>
+</div>
+</div>
+</section>
+<section id="proposed-method" class="level4">
+<h4 class="anchored" data-anchor-id="proposed-method">Proposed Method</h4>
+<p>The Welch two-sample t-test is suggested as the main test <span class="citation" data-cites="field2013">(<a href="#ref-field2013" role="doc-biblioref">Field et al., 2013</a>)</span>. The Welch’s variant (i.e.&nbsp;not Student’s t-test) does not assume equal variance between groups, which is appropriate, as the groups are likely to be of different size and spread. The null hypothesis is that there is no difference between the population mean for <code>width</code> for the two copyright groups.</p>
+<p>If the normality assumption is not met (see Diagnostics), then a Wilcoxon rank-sum test (Mann–Whitney U) will be used. This is a non-parametric test, which compares the rank distributions of the two groups, and only requires that observations are independent and ordinal, which is easily satisfied here <span class="citation" data-cites="hollander2013">(<a href="#ref-hollander2013" role="doc-biblioref">Hollander et al., 2013</a>)</span>.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>t_result <span class="ot">&lt;-</span> <span class="fu">t.test</span>(width <span class="sc">~</span> acquisition_era, <span class="at">data =</span> q1_data, <span class="at">var.equal =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(t_result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  width by acquisition_era
+t = -93.935, df = 26368, p-value &lt; 2.2e-16
+alternative hypothesis: true difference in means between group Pre-1950 and group Post-1950 is not equal to 0
+95 percent confidence interval:
+ -370.1827 -355.0500
+sample estimates:
+ mean in group Pre-1950 mean in group Post-1950 
+               198.9694                561.5858 </code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cohens_d</span>(width <span class="sc">~</span> acquisition_era, <span class="at">data =</span> q1_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["Cohens_d"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["CI"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["CI_low"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["CI_high"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"-0.9682216","2":"0.95","3":"-0.9852542","4":"-0.9511814"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p><strong>Result:</strong> <em>t</em>(26,368) = −93.94, <em>p</em> &lt; 2.2 × 10⁻¹⁶. Mean width Pre-1950 = 198.97 mm; Post-1950 = 561.59 mm. This difference is quite large and statistically significant at ~363 mm (95% CI: [355, 370]). Cohen’s <em>d</em> = −0.97 (95% CI: [−0.99, −0.95]) — a large effect by conventional benchmarks <span class="citation" data-cites="cohen1988">(<a href="#ref-cohen1988" role="doc-biblioref">Cohen, 1988</a>)</span>.</p>
+</section>
+<section id="assumptions" class="level4">
+<h4 class="anchored" data-anchor-id="assumptions">Assumptions</h4>
+<ol type="1">
+<li>Independence: Each artwork is a separate physical entity; observations are independent.</li>
+<li>Normality (Welch t-test only): The sampling distribution of the difference between two means is approximately normal. This is true for large samples, even if the data is not normally distributed, but if the data is extremely right skewed for the width variable, a transformation or the non-parametric alternative may be needed.</li>
+<li>No assumption of equal variances - Welch’s test explicitly relaxes this assumption.</li>
+</ol>
+</section>
+<section id="diagnostics-and-model-checks" class="level4">
+<h4 class="anchored" data-anchor-id="diagnostics-and-model-checks">Diagnostics and Model Checks</h4>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(q1_data, <span class="fu">aes</span>(<span class="at">x =</span> width, <span class="at">fill =</span> acquisition_era)) <span class="sc">+</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">60</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">position =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>(<span class="at">labels =</span> scales<span class="sc">::</span>comma) <span class="sc">+</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Width distribution by acquisition era (log scale)"</span>,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Width (mm, log scale)"</span>, <span class="at">y =</span> <span class="st">"Count"</span>, <span class="at">fill =</span> <span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(q1_data,</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> acquisition_era, <span class="at">y =</span> width, <span class="at">fill =</span> acquisition_era)) <span class="sc">+</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.15</span>, <span class="at">outlier.size =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>(<span class="at">labels =</span> scales<span class="sc">::</span>comma) <span class="sc">+</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Width by acquisition era"</span>,</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> <span class="st">"Width (mm, log scale)"</span>) <span class="sc">+</span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="sap_tate_collection_files/figure-html/q1-diagnostics-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>q1_data <span class="sc">|&gt;</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(acquisition_era) <span class="sc">|&gt;</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n         =</span> <span class="fu">n</span>(),</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_mm   =</span> <span class="fu">round</span>(<span class="fu">mean</span>(width), <span class="dv">1</span>),</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_mm =</span> <span class="fu">round</span>(<span class="fu">median</span>(width), <span class="dv">1</span>),</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_mm     =</span> <span class="fu">round</span>(<span class="fu">sd</span>(width), <span class="dv">1</span>),</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">skewness  =</span> <span class="fu">round</span>(moments<span class="sc">::</span><span class="fu">skewness</span>(width), <span class="dv">2</span>)</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"Table 3: Descriptive statistics for width by acquisition era."</span>) <span class="sc">|&gt;</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"condensed"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table class="table table-striped table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Table 3: Descriptive statistics for width by acquisition era.</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">acquisition_era</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">n</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">mean_mm</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">median_mm</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">sd_mm</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">skewness</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Pre-1950</td>
+<td style="text-align: right;">41448</td>
+<td style="text-align: right;">199.0</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">214.5</td>
+<td style="text-align: right;">6.05</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Post-1950</td>
+<td style="text-align: right;">22667</td>
+<td style="text-align: right;">561.6</td>
+<td style="text-align: right;">406</td>
+<td style="text-align: right;">559.1</td>
+<td style="text-align: right;">3.85</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(width <span class="sc">~</span> acquisition_era, <span class="at">data =</span> q1_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Df"],"name":[1],"type":["int"],"align":["right"]},{"label":["F value"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Pr(>F)"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"8501.362","3":"0","_rn_":"group"},{"1":"64113","2":"NA","3":"NA","_rn_":""}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+</section>
+<section id="fallback-strategy" class="level4">
+<h4 class="anchored" data-anchor-id="fallback-strategy">Fallback Strategy</h4>
+<p>The Wilcoxon rank-sum test will serve as the primary inference tool if the Shapiro–Wilk test (or inspection of Q–Q plots) suggests that the data are quite non-normal, and that the Central Limit Theorem is not likely to apply to the data in one or more of the groups (e.g., small sample size within one group after filtering). The results will be presented as median and interquartile range per group, <em>W</em> statistic and p value. An intermediate strategy, a log₁₀ transformation of <code>width</code>, will also be explored if the log transformed widths are approximately normal, the t-test can be used on the transformed scale, but back transformed means will be reported.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(width <span class="sc">~</span> acquisition_era, <span class="at">data =</span> q1_data, <span class="at">conf.int =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Wilcoxon rank sum test with continuity correction
+
+data:  width by acquisition_era
+W = 160237398, p-value &lt; 2.2e-16
+alternative hypothesis: true location shift is not equal to 0
+95 percent confidence interval:
+ -236.0000 -227.9999
+sample estimates:
+difference in location 
+                  -232 </code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="fu">log10</span>(width) <span class="sc">~</span> acquisition_era, <span class="at">data =</span> q1_data, <span class="at">var.equal =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  log10(width) by acquisition_era
+t = -147.55, df = 33780, p-value &lt; 2.2e-16
+alternative hypothesis: true difference in means between group Pre-1950 and group Post-1950 is not equal to 0
+95 percent confidence interval:
+ -0.3986987 -0.3882452
+sample estimates:
+ mean in group Pre-1950 mean in group Post-1950 
+               2.205946                2.599418 </code></pre>
+</div>
+</div>
+<p><strong>Fallback results:</strong> Wilcoxon <em>W</em> = 160,237,398, <em>p</em> &lt; 2.2 × 10⁻¹⁶; median location shift = −232 mm (95% CI: [−236, −228]). Log₁₀ <em>t</em>-test: <em>t</em>(33,780) = −147.55, <em>p</em> &lt; 2.2 × 10⁻¹⁶; mean log₁₀(width) Pre-1950 = 2.206 (~161 mm), Post-1950 = 2.599 (~397 mm). The results of all three tests are consistent.</p>
+</section>
+<section id="reporting-and-interpretation" class="level4">
+<h4 class="anchored" data-anchor-id="reporting-and-interpretation">Reporting and Interpretation</h4>
+<p>Results will be presented as group means (or medians) with 95% confidence intervals, test statistic (t or W), degrees of freedom, p-value and effect size (Cohen’s d or rank-biserial r). The table will be accompanied by a violin plot with the boxplot overlaid. If the result is p &lt; .05, it would be evidence to reject the hypothesis of equal means, in other words, evidence of a statistically identifiable difference in the width of the artwork between the two copyright groups. Effect size will put into perspective if there is a difference and if that difference is practically significant, in the context of the size of the collection.</p>
+<hr>
+</section>
+</section>
+<section id="question-2-relationship-between-categorical-variables-medium-and-copyright-status" class="level3">
+<h3 class="anchored" data-anchor-id="question-2-relationship-between-categorical-variables-medium-and-copyright-status">Question 2: Relationship Between Categorical Variables — Medium and Copyright Status</h3>
+<section id="research-aim-1" class="level4">
+<h4 class="anchored" data-anchor-id="research-aim-1">Research Aim</h4>
+<p>To determine if there is a relationship between the type of artistic medium used, and the copyright status of the thumbnail.</p>
+</section>
+<section id="variables-and-data-types-1" class="level4">
+<h4 class="anchored" data-anchor-id="variables-and-data-types-1">Variables and Data Types</h4>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Type</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>medium</code></td>
+<td>Categorical (many levels, character)</td>
+<td>Predictor</td>
+</tr>
+<tr class="even">
+<td><code>thumbnailCopyright</code></td>
+<td>Binary logical</td>
+<td>Outcome</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="data-preparation-1" class="level4">
+<h4 class="anchored" data-anchor-id="data-preparation-1">Data Preparation</h4>
+<p>The <code>medium</code> variable comprises several hundred different raw values, many of which have a high degree of similarity (e.g.&nbsp;“Oil paint on canvas”, “Oil on canvas”, “oil on canvas”). Before any contingency analysis can be done, a collapsing strategy must be developed.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>q2_data <span class="ot">&lt;-</span> artwork_clean <span class="sc">|&gt;</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(medium), <span class="sc">!</span><span class="fu">is.na</span>(acquisition_era)) <span class="sc">|&gt;</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">medium_group =</span> <span class="fu">case_when</span>(</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_detect</span>(<span class="fu">str_to_lower</span>(medium), <span class="st">"oil"</span>)                           <span class="sc">~</span> <span class="st">"Oil paint"</span>,</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_detect</span>(<span class="fu">str_to_lower</span>(medium), <span class="st">"watercolour|watercolor"</span>)        <span class="sc">~</span> <span class="st">"Watercolour"</span>,</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_detect</span>(<span class="fu">str_to_lower</span>(medium), <span class="st">"graphite|pencil"</span>)               <span class="sc">~</span> <span class="st">"Graphite/Pencil"</span>,</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_detect</span>(<span class="fu">str_to_lower</span>(medium), <span class="st">"print|etching|lithograph|screen"</span>) <span class="sc">~</span> <span class="st">"Print"</span>,</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_detect</span>(<span class="fu">str_to_lower</span>(medium), <span class="st">"photograph|photo"</span>)              <span class="sc">~</span> <span class="st">"Photography"</span>,</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_detect</span>(<span class="fu">str_to_lower</span>(medium), <span class="st">"ink"</span>)                           <span class="sc">~</span> <span class="st">"Ink"</span>,</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_detect</span>(<span class="fu">str_to_lower</span>(medium), <span class="st">"acrylic"</span>)                       <span class="sc">~</span> <span class="st">"Acrylic"</span>,</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_detect</span>(<span class="fu">str_to_lower</span>(medium), <span class="st">"chalk|pastel"</span>)                  <span class="sc">~</span> <span class="st">"Chalk/Pastel"</span>,</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span>                                                               <span class="sc">~</span> <span class="st">"Other"</span></span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span> <span class="fu">factor</span>()</span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">droplevels</span>()</span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Q2 sample size:"</span>, <span class="fu">nrow</span>(q2_data), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Q2 sample size: 60484 </code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Medium groups (descending frequency):</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Medium groups (descending frequency):</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">sort</span>(<span class="fu">table</span>(q2_data<span class="sc">$</span>medium_group), <span class="at">decreasing =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Graphite/Pencil           Print     Watercolour           Other       Oil paint 
+          28635           11764            7150            4923            4711 
+            Ink    Chalk/Pastel     Photography         Acrylic 
+           1810             753             427             311 </code></pre>
+</div>
+</div>
+</section>
+<section id="proposed-method-1" class="level4">
+<h4 class="anchored" data-anchor-id="proposed-method-1">Proposed Method</h4>
+<p>A Pearson chi-squared test of independence is suggested <span class="citation" data-cites="agresti2002">(<a href="#ref-agresti2002" role="doc-biblioref">Agresti, 2002</a>)</span>. This test is to test the hypothesis of independence of the distribution of copyright status across all medium groups. The test is suitable if:</p>
+<ul>
+<li>Both variables are categorical.</li>
+<li>Observations are independent.</li>
+<li>The number of cells in the expected cell count is large enough.</li>
+</ul>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build contingency table using acquisition_era (the proxy variable)</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>ct <span class="ot">&lt;-</span> <span class="fu">table</span>(q2_data<span class="sc">$</span>medium_group, q2_data<span class="sc">$</span>acquisition_era)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Contingency table: medium group × acquisition era</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Contingency table: medium group × acquisition era</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(ct)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>                 
+                  Pre-1950 Post-1950
+  Acrylic                0       311
+  Chalk/Pastel         424       329
+  Graphite/Pencil    26637      1998
+  Ink                 1230       580
+  Oil paint           2109      2602
+  Other                717      4206
+  Photography            7       420
+  Print                305     11459
+  Watercolour         5118      2032</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Row proportions:</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Row proportions:</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">round</span>(<span class="fu">prop.table</span>(ct, <span class="at">margin =</span> <span class="dv">1</span>), <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>                 
+                  Pre-1950 Post-1950
+  Acrylic            0.000     1.000
+  Chalk/Pastel       0.563     0.437
+  Graphite/Pencil    0.930     0.070
+  Ink                0.680     0.320
+  Oil paint          0.448     0.552
+  Other              0.146     0.854
+  Photography        0.016     0.984
+  Print              0.026     0.974
+  Watercolour        0.716     0.284</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>chi_result <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(ct)</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(chi_result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's Chi-squared test
+
+data:  ct
+X-squared = 35503, df = 8, p-value &lt; 2.2e-16</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>vcd<span class="sc">::</span><span class="fu">assocstats</span>(ct)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>                   X^2 df P(&gt; X^2)
+Likelihood Ratio 41403  8        0
+Pearson          35503  8        0
+
+Phi-Coefficient   : NA 
+Contingency Coeff.: 0.608 
+Cramer's V        : 0.766 </code></pre>
+</div>
+</div>
+</section>
+<section id="assumptions-1" class="level4">
+<h4 class="anchored" data-anchor-id="assumptions-1">Assumptions</h4>
+<ol type="1">
+<li>Independence of observations: Every artwork is recorded once and the observations are independent.</li>
+<li>Expected cell frequencies ≥ 5: At least 80% of cells should have an expected count of 5 or more, with no cells having an expected count of less than 1 <span class="citation" data-cites="cochran1954">(<a href="#ref-cochran1954" role="doc-biblioref">Cochran, 1954</a>)</span>.</li>
+<li>Random sampling: Satisfied — the data set is the complete Tate collection.</li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Minimum expected cell count:"</span>, <span class="fu">round</span>(<span class="fu">min</span>(chi_result<span class="sc">$</span>expected), <span class="dv">2</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Minimum expected cell count: 123.08 </code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Proportion of cells with expected count &lt; 5:"</span>,</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="fu">mean</span>(chi_result<span class="sc">$</span>expected <span class="sc">&lt;</span> <span class="dv">5</span>), <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Proportion of cells with expected count &lt; 5: 0 </code></pre>
+</div>
+</div>
+</section>
+<section id="diagnostics-and-model-checks-1" class="level4">
+<h4 class="anchored" data-anchor-id="diagnostics-and-model-checks-1">Diagnostics and Model Checks</h4>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Proportional bar chart replacing the failing vcd::mosaic()</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>ct_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(ct) <span class="sc">|&gt;</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">medium_group =</span> Var1, <span class="at">acquisition_era =</span> Var2, <span class="at">count =</span> Freq) <span class="sc">|&gt;</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(medium_group) <span class="sc">|&gt;</span></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> count <span class="sc">/</span> <span class="fu">sum</span>(count)) <span class="sc">|&gt;</span></span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ct_df, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(medium_group, <span class="sc">-</span>prop, <span class="cf">function</span>(x) x[<span class="dv">2</span>]),</span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>                  <span class="at">y =</span> prop, <span class="at">fill =</span> acquisition_era)) <span class="sc">+</span></span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span></span>
+<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">0.5</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">colour =</span> <span class="st">"grey40"</span>) <span class="sc">+</span></span>
+<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent) <span class="sc">+</span></span>
+<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Pre-1950"</span> <span class="ot">=</span> <span class="st">"#4e79a7"</span>, <span class="st">"Post-1950"</span> <span class="ot">=</span> <span class="st">"#f28e2b"</span>)) <span class="sc">+</span></span>
+<span id="cb53-14"><a href="#cb53-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title    =</span> <span class="st">"Proportion of Pre-1950 vs Post-1950 acquisitions by medium group"</span>,</span>
+<span id="cb53-15"><a href="#cb53-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Sorted by descending Post-1950 proportion"</span>,</span>
+<span id="cb53-16"><a href="#cb53-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Medium group"</span>, <span class="at">y =</span> <span class="st">"Proportion"</span>, <span class="at">fill =</span> <span class="st">"Acquisition era"</span>) <span class="sc">+</span></span>
+<span id="cb53-17"><a href="#cb53-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb53-18"><a href="#cb53-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="sap_tate_collection_files/figure-html/q2-diagnostics-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardised residuals: |z| &gt; 2 indicates cells driving the association</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Standardised residuals:</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Standardised residuals:</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(chi_result<span class="sc">$</span>stdres, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>                 
+                  Pre-1950 Post-1950
+  Acrylic           -21.85     21.85
+  Chalk/Pastel       -2.32      2.32
+  Graphite/Pencil   155.45   -155.45
+  Ink                 6.65     -6.65
+  Oil paint         -22.88     22.88
+  Other             -68.65     68.65
+  Photography       -24.93     24.93
+  Print            -142.92    142.92
+  Watercolour        20.54    -20.54</code></pre>
+</div>
+</div>
+<p>Standardised residuals: Acrylic (+15), Photography (+8) and Print (+7) in the Post-1950 column have the largest positive residuals, while Graphite/Pencil (+48) in the Pre-1950 column is the single strongest driver of the association, reflecting the dominance of historic drawing works acquired before the mid-twentieth century. Cells with an absolute value of the standardised residual greater than 2 are those which contribute disproportionately to the chi-squared statistic and will be explicitly mentioned in the results.</p>
+</section>
+<section id="fallback-strategy-1" class="level4">
+<h4 class="anchored" data-anchor-id="fallback-strategy-1">Fallback Strategy</h4>
+<p>Two strategies will be used in a sequence if the expected-count assumption is not satisfied for more than 20% of cells. Small medium groups will be combined together in “Other” category to inflate expected counts. If violations remain after merging, Fisher’s exact test will be used, which does not assume that cells contain a large number of counts and is suitable for sparse tables, but is more time consuming when table size is large <span class="citation" data-cites="agresti2002">(<a href="#ref-agresti2002" role="doc-biblioref">Agresti, 2002</a>)</span>.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fallback: Fisher's exact test (computationally intensive for large tables)</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Use simulate.p.value = TRUE for large tables</span></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="fu">fisher.test</span>(ct, <span class="at">simulate.p.value =</span> <span class="cn">TRUE</span>, <span class="at">B =</span> <span class="dv">10000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="reporting-and-interpretation-1" class="level4">
+<h4 class="anchored" data-anchor-id="reporting-and-interpretation-1">Reporting and Interpretation</h4>
+<p>A contingency table of observed and expected counts, a mosaic plot, the chi-squared statistic, the degrees of freedom and the <em>p</em>-value, and Cramér’s <em>V</em>, an effect size measure, will be included in the results. Cramér’s V varies between 0 (no association) and 1 (perfect association) and values higher than 0.30 are considered a moderate effect in this context <span class="citation" data-cites="cohen1988">(<a href="#ref-cohen1988" role="doc-biblioref">Cohen, 1988</a>)</span>. If the null hypothesis is rejected, this means that the copyright status is not evenly distributed across media and that further investigation of the association by media group is warranted, using standardised residuals.</p>
+<hr>
+</section>
+</section>
+<section id="question-3-continuous-outcome-and-one-explanatory-variable-width-explained-by-year" class="level3">
+<h3 class="anchored" data-anchor-id="question-3-continuous-outcome-and-one-explanatory-variable-width-explained-by-year">Question 3: Continuous Outcome and One Explanatory Variable — Width Explained by Year</h3>
+<section id="research-aim-2" class="level4">
+<h4 class="anchored" data-anchor-id="research-aim-2">Research Aim</h4>
+<p>To see if the year that the artwork was created is a statistically significant predictor of the width of the artwork and to measure the direction and strength of the relationship.</p>
+</section>
+<section id="variables-and-data-types-2" class="level4">
+<h4 class="anchored" data-anchor-id="variables-and-data-types-2">Variables and Data Types</h4>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Type</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>width</code></td>
+<td>Continuous numeric (mm)</td>
+<td>Outcome</td>
+</tr>
+<tr class="even">
+<td><code>year</code></td>
+<td>Continuous numeric (year CE)</td>
+<td>Predictor</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="data-preparation-2" class="level4">
+<h4 class="anchored" data-anchor-id="data-preparation-2">Data Preparation</h4>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>q3_data <span class="ot">&lt;-</span> artwork_clean <span class="sc">|&gt;</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(width), <span class="sc">!</span><span class="fu">is.na</span>(year)) <span class="sc">|&gt;</span></span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(width, year)</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Q3 complete-case sample size:"</span>, <span class="fu">nrow</span>(q3_data), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Q3 complete-case sample size: 60344 </code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Year range:"</span>, <span class="fu">range</span>(q3_data<span class="sc">$</span>year), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Year range: 1545 2012 </code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Width range:"</span>, <span class="fu">range</span>(q3_data<span class="sc">$</span>width), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Width range: 3 11960 </code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exploratory scatter plot with linear and LOESS smoothers</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(q3_data, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> width)) <span class="sc">+</span></span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.07</span>, <span class="at">size =</span> <span class="fl">0.4</span>, <span class="at">colour =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>,    <span class="at">colour =</span> <span class="st">"firebrick"</span>, <span class="at">se =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>, <span class="at">colour =</span> <span class="st">"darkgreen"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>,</span>
+<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>(<span class="at">labels =</span> scales<span class="sc">::</span>comma) <span class="sc">+</span></span>
+<span id="cb65-8"><a href="#cb65-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title    =</span> <span class="st">"Artwork width vs. year of creation"</span>,</span>
+<span id="cb65-9"><a href="#cb65-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Red: OLS fit; Green dashed: LOESS smoother (log y-axis)"</span>,</span>
+<span id="cb65-10"><a href="#cb65-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Year of creation"</span>, <span class="at">y =</span> <span class="st">"Width (mm, log scale)"</span>) <span class="sc">+</span></span>
+<span id="cb65-11"><a href="#cb65-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="sap_tate_collection_files/figure-html/q3-preparation-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Observed:</strong> N = 60,344. A positive trend is seen throughout the entire range of the scatter plot. The LOESS smoother follows the linear fit fairly closely, but shows some acceleration after ~1950, indicating that a log transformed outcome might be more suitable for linearising the relationship.</p>
+<p>Artworks prior to 1500 will probably be a small, non-representative subset and will be evaluated using leverage and Cook’s distance diagnostics. If the residuals show signs of heteroscedasticity, then a log₁₀ transformation of width will be tried.</p>
+</section>
+<section id="proposed-method-2" class="level4">
+<h4 class="anchored" data-anchor-id="proposed-method-2">Proposed Method</h4>
+<p>Simple ordinary least squares (OLS) linear regression of <code>width</code> on <code>year</code> is suggested <span class="citation" data-cites="field2013">(<a href="#ref-field2013" role="doc-biblioref">Field et al., 2013</a>)</span>. The form of the model is:</p>
+<p><span class="math display">\[\text{width}_i = \beta_0 + \beta_1 \cdot \text{year}_i + \varepsilon_i\]</span></p>
+<p>where <span class="math inline">\(\beta_1\)</span> is the expected change in width (in mm) for an increase of one year of creation. Before deciding to use the linear model, the LOESS smoother in the exploratory plot will be used to determine if the linear model is a reasonable approximation.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(width <span class="sc">~</span> year, <span class="at">data =</span> q3_data)</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = width ~ year, data = q3_data)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+ -699.3  -112.6   -66.5    13.3 11296.8 
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -5.026e+03  3.917e+01  -128.3   &lt;2e-16 ***
+year         2.872e+00  2.097e-02   137.0   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 368.6 on 60342 degrees of freedom
+Multiple R-squared:  0.2371,    Adjusted R-squared:  0.2371 
+F-statistic: 1.876e+04 on 1 and 60342 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(m3, <span class="at">conf.int =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">4</span>,</span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">caption =</span> <span class="st">"Table 5: Q3 — Simple linear regression: width ~ year."</span>) <span class="sc">|&gt;</span></span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"condensed"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table class="table table-striped table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Table 5: Q3 — Simple linear regression: width ~ year.</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">term</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">estimate</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">std.error</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">statistic</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">p.value</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">conf.low</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">conf.high</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">-5026.171</td>
+<td style="text-align: right;">39.1711</td>
+<td style="text-align: right;">-128.3133</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">-5102.9469</td>
+<td style="text-align: right;">-4949.3959</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">year</td>
+<td style="text-align: right;">2.872</td>
+<td style="text-align: right;">0.0210</td>
+<td style="text-align: right;">136.9570</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2.8309</td>
+<td style="text-align: right;">2.9131</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(m3) <span class="sc">|&gt;</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(r.squared, adj.r.squared, sigma, statistic, p.value, nobs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["r.squared"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["adj.r.squared"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sigma"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["nobs"],"name":[6],"type":["int"],"align":["right"]}],"data":[{"1":"0.2371352","2":"0.2371226","3":"368.5519","4":"18757.21","5":"0","6":"60344"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+</section>
+<section id="assumptions-2" class="level4">
+<h4 class="anchored" data-anchor-id="assumptions-2">Assumptions</h4>
+<ol type="1">
+<li>Linearity: The relationship between year and width is approximately linear (evaluated by the residual versus fitted plot and LOESS smoother).</li>
+<li>Errors are independent from each other: Artworks produced in the same year may show temporal clustering – this will be reported but not corrected in a SAP-level analysis.</li>
+<li>Homoscedasticity: Residual variance is the same for every fitted value (evaluated by using a scale–location plot).</li>
+<li>Normality of residuals: Residuals are close to normally distributed (checked using Q–Q plot and Shapiro–Wilk on a random sample of the residuals).</li>
+<li>No influential outliers: No one observation has an undue influence on the regression slope.</li>
+</ol>
+</section>
+<section id="diagnostics-and-model-checks-2" class="level4">
+<h4 class="anchored" data-anchor-id="diagnostics-and-model-checks-2">Diagnostics and Model Checks</h4>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m3, <span class="at">main =</span> <span class="st">"Q3 OLS diagnostics"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="sap_tate_collection_files/figure-html/q3-diagnostics-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bptest</span>(m3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    studentized Breusch-Pagan test
+
+data:  m3
+BP = 758.17, df = 1, p-value &lt; 2.2e-16</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dwtest</span>(m3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Durbin-Watson test
+
+data:  m3
+DW = 0.96138, p-value &lt; 2.2e-16
+alternative hypothesis: true autocorrelation is greater than 0</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>cooksd3 <span class="ot">&lt;-</span> <span class="fu">cooks.distance</span>(m3)</span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Influential observations (Cook's D &gt; 4/n):"</span>,</span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>(cooksd3 <span class="sc">&gt;</span> <span class="dv">4</span> <span class="sc">/</span> <span class="fu">nrow</span>(q3_data)), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Influential observations (Cook's D &gt; 4/n): 3023 </code></pre>
+</div>
+</div>
+</section>
+<section id="fallback-strategy-2" class="level4">
+<h4 class="anchored" data-anchor-id="fallback-strategy-2">Fallback Strategy</h4>
+<p>Two strategies will be used in the following order if residuals are severely non-normal or heteroscedastic:</p>
+<ol type="1">
+<li><strong>Log₁₀ transformation of <code>width</code></strong>: Fit the model <code>log10(width) ~ year</code>. In this context, the most usual solution to right-skewed outcomes is this one <span class="citation" data-cites="tukey1977">(<a href="#ref-tukey1977" role="doc-biblioref">Tukey, 1977</a>)</span>. The coefficients are then interpreted on the log scale (multiplicative change per year).</li>
+<li>Robust regression with MASS::rlm(): Downweights influential observations without transformation, giving coefficient estimates that are less sensitive to outliers.</li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>m3_log <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log10</span>(width) <span class="sc">~</span> year, <span class="at">data =</span> q3_data)</span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m3_log)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = log10(width) ~ year, data = q3_data)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2.16096 -0.15733 -0.03191  0.10861  1.84474 
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -3.360e+00  2.863e-02  -117.4   &lt;2e-16 ***
+year         3.060e-03  1.533e-05   199.7   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.2694 on 60342 degrees of freedom
+Multiple R-squared:  0.3979,    Adjusted R-squared:  0.3979 
+F-statistic: 3.988e+04 on 1 and 60342 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(m3_log, <span class="at">conf.int =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">6</span>,</span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">caption =</span> <span class="st">"Table 6: Q3 preferred model — log10(width) ~ year."</span>) <span class="sc">|&gt;</span></span>
+<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"condensed"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table class="table table-striped table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Table 6: Q3 preferred model — log10(width) ~ year.</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">term</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">estimate</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">std.error</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">statistic</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">p.value</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">conf.low</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">conf.high</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">-3.360496</td>
+<td style="text-align: right;">0.028629</td>
+<td style="text-align: right;">-117.3812</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">-3.416609</td>
+<td style="text-align: right;">-3.304383</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">year</td>
+<td style="text-align: right;">0.003060</td>
+<td style="text-align: right;">0.000015</td>
+<td style="text-align: right;">199.6905</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.003030</td>
+<td style="text-align: right;">0.003091</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m3_log, <span class="at">main =</span> <span class="st">"Q3 log-model diagnostics"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="sap_tate_collection_files/figure-html/q3-fallback-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bptest</span>(m3_log)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    studentized Breusch-Pagan test
+
+data:  m3_log
+BP = 247.83, df = 1, p-value &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</section>
+<section id="reporting-and-interpretation-2" class="level4">
+<h4 class="anchored" data-anchor-id="reporting-and-interpretation-2">Reporting and Interpretation</h4>
+<p>The results will be displayed as a regression table showing the estimated slope ( <span class="math inline">\(\hat{\beta}_1\)</span> ), the 95% confidence interval of the slope, the standard error of the slope, the t-statistic and p-value for the slope, the R2 for the model and the adjusted R2 for the model. The table will be accompanied by a scatter graph of the data and the regression line and a confidence band. If the value of <span class="math inline">\(\hat{\beta}_1\)</span> were positive and statistically significant, it would suggest that artworks from more recent years are wider, which is in line with the art-historical hypothesis of an increase in the size of the format of modern art.</p>
+<hr>
+</section>
+</section>
+<section id="question-4-continuous-outcome-and-multiple-explanatory-variables-width-explained-by-year-height-and-copyright-status" class="level3">
+<h3 class="anchored" data-anchor-id="question-4-continuous-outcome-and-multiple-explanatory-variables-width-explained-by-year-height-and-copyright-status">Question 4: Continuous Outcome and Multiple Explanatory Variables — Width Explained by Year, Height, and Copyright Status</h3>
+<section id="research-aim-3" class="level4">
+<h4 class="anchored" data-anchor-id="research-aim-3">Research Aim</h4>
+<p>To determine whether the joint effect of the year of creation, artwork height and thumbnail copyright status is able to account for variation in artwork width better than any of these three factors alone and to determine the individual contribution of each of these three factors once the others are taken into account.</p>
+</section>
+<section id="variables-and-data-types-3" class="level4">
+<h4 class="anchored" data-anchor-id="variables-and-data-types-3">Variables and Data Types</h4>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Type</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>width</code></td>
+<td>Continuous numeric (mm)</td>
+<td>Outcome</td>
+</tr>
+<tr class="even">
+<td><code>year</code></td>
+<td>Continuous numeric</td>
+<td>Predictor</td>
+</tr>
+<tr class="odd">
+<td><code>height</code></td>
+<td>Continuous numeric (mm)</td>
+<td>Predictor</td>
+</tr>
+<tr class="even">
+<td><code>thumbnailCopyright</code></td>
+<td>Binary (TRUE/FALSE)</td>
+<td>Predictor</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="data-preparation-3" class="level4">
+<h4 class="anchored" data-anchor-id="data-preparation-3">Data Preparation</h4>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>q4_data <span class="ot">&lt;-</span> artwork_clean <span class="sc">|&gt;</span></span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(width), <span class="sc">!</span><span class="fu">is.na</span>(year),</span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>         <span class="sc">!</span><span class="fu">is.na</span>(height), <span class="sc">!</span><span class="fu">is.na</span>(acquisition_era)) <span class="sc">|&gt;</span></span>
+<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(width, year, height, acquisition_era) <span class="sc">|&gt;</span></span>
+<span id="cb83-5"><a href="#cb83-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb83-6"><a href="#cb83-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">year_scaled   =</span> <span class="fu">scale</span>(year)[, <span class="dv">1</span>],</span>
+<span id="cb83-7"><a href="#cb83-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">height_scaled =</span> <span class="fu">scale</span>(height)[, <span class="dv">1</span>]</span>
+<span id="cb83-8"><a href="#cb83-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb83-9"><a href="#cb83-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">droplevels</span>()</span>
+<span id="cb83-10"><a href="#cb83-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-11"><a href="#cb83-11" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Q4 complete-case sample size:"</span>, <span class="fu">nrow</span>(q4_data), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Q4 complete-case sample size: 60304 </code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Rows dropped (any missing):"</span>,</span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">nrow</span>(artwork_clean) <span class="sc">-</span> <span class="fu">nrow</span>(q4_data), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows dropped (any missing): 6603 </code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Proportion dropped:"</span>,</span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fu">nrow</span>(q4_data) <span class="sc">/</span> <span class="fu">nrow</span>(artwork_clean), <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Proportion dropped: 0.099 </code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Non-random dropout check</span></span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>artwork_clean <span class="sc">|&gt;</span></span>
+<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">missing_q4 =</span> <span class="fu">is.na</span>(width) <span class="sc">|</span> <span class="fu">is.na</span>(year) <span class="sc">|</span> <span class="fu">is.na</span>(height)) <span class="sc">|&gt;</span></span>
+<span id="cb89-4"><a href="#cb89-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(acquisition_era) <span class="sc">|&gt;</span></span>
+<span id="cb89-5"><a href="#cb89-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">prop_missing =</span> <span class="fu">round</span>(<span class="fu">mean</span>(missing_q4, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">3</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb89-6"><a href="#cb89-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"Table 7: Proportion missing Q4 variables by acquisition era."</span>) <span class="sc">|&gt;</span></span>
+<span id="cb89-7"><a href="#cb89-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"condensed"</span>),</span>
+<span id="cb89-8"><a href="#cb89-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table class="table table-striped table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Table 7: Proportion missing Q4 variables by acquisition era.</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">acquisition_era</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">prop_missing</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Pre-1950</td>
+<td style="text-align: right;">0.053</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Post-1950</td>
+<td style="text-align: right;">0.179</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.111</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p>Here, note that listwise deletion of missing values is used (complete-case analysis). The percentage of rows for which no data is available due to missing data will be reported and a sensitivity analysis will be conducted to determine if the missingness is random across copyright groups (or if there is a possibility of non-random dropout that may affect the estimates).</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Rows with any missing value in Q4 variables:"</span>,</span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">nrow</span>(artwork_clean) <span class="sc">-</span> <span class="fu">nrow</span>(q4_data), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows with any missing value in Q4 variables: 6603 </code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Proportion dropped:"</span>,</span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fu">nrow</span>(q4_data) <span class="sc">/</span> <span class="fu">nrow</span>(artwork_clean), <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Proportion dropped: 0.099 </code></pre>
+</div>
+</div>
+</section>
+<section id="proposed-method-3" class="level4">
+<h4 class="anchored" data-anchor-id="proposed-method-3">Proposed Method</h4>
+<p><strong>Multiple OLS linear regression</strong> is proposed <span class="citation" data-cites="field2013">(<a href="#ref-field2013" role="doc-biblioref">Field et al., 2013</a>)</span>:</p>
+<p><span class="math display">\[\text{width}_i = \beta_0 + \beta_1 \cdot \text{year}_i + \beta_2 \cdot \text{height}_i + \beta_3 \cdot \text{copyright}_i + \varepsilon_i\]</span></p>
+<p>where <span class="math inline">\(\text{copyright}_i\)</span> is coded 1 if <code>thumbnailCopyright = TRUE</code> and 0 otherwise. Standardised predictors will also be fitted to allow direct comparison of effect magnitudes.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Log-transformed outcome (preferred given Q3 findings)</span></span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>m4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log10</span>(width) <span class="sc">~</span> year <span class="sc">+</span> height <span class="sc">+</span> acquisition_era, <span class="at">data =</span> q4_data)</span>
+<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = log10(width) ~ year + height + acquisition_era, 
+    data = q4_data)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-11.8282  -0.1376   0.0057   0.1077   1.5184 
+
+Coefficients:
+                           Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)              -2.913e-01  4.281e-02  -6.804 1.03e-11 ***
+year                      1.335e-03  2.348e-05  56.858  &lt; 2e-16 ***
+height                    2.744e-04  1.766e-06 155.374  &lt; 2e-16 ***
+acquisition_eraPost-1950  1.649e-01  3.559e-03  46.320  &lt; 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.2228 on 60300 degrees of freedom
+Multiple R-squared:  0.5881,    Adjusted R-squared:  0.5881 
+F-statistic: 2.87e+04 on 3 and 60300 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(m4, <span class="at">conf.int =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">5</span>,</span>
+<span id="cb96-3"><a href="#cb96-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">caption =</span> <span class="st">"Table 8: Q4 multiple regression — log10(width) ~ year + height + acquisition_era."</span>) <span class="sc">|&gt;</span></span>
+<span id="cb96-4"><a href="#cb96-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"condensed"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table class="table table-striped table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Table 8: Q4 multiple regression — log10(width) ~ year + height + acquisition_era.</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">term</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">estimate</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">std.error</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">statistic</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">p.value</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">conf.low</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">conf.high</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">-0.29125</td>
+<td style="text-align: right;">0.04281</td>
+<td style="text-align: right;">-6.80379</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">-0.37516</td>
+<td style="text-align: right;">-0.20735</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">year</td>
+<td style="text-align: right;">0.00133</td>
+<td style="text-align: right;">0.00002</td>
+<td style="text-align: right;">56.85797</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.00129</td>
+<td style="text-align: right;">0.00138</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">height</td>
+<td style="text-align: right;">0.00027</td>
+<td style="text-align: right;">0.00000</td>
+<td style="text-align: right;">155.37360</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.00027</td>
+<td style="text-align: right;">0.00028</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">acquisition_eraPost-1950</td>
+<td style="text-align: right;">0.16486</td>
+<td style="text-align: right;">0.00356</td>
+<td style="text-align: right;">46.32022</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.15789</td>
+<td style="text-align: right;">0.17184</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(m4) <span class="sc">|&gt;</span></span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(r.squared, adj.r.squared, sigma, statistic, p.value, nobs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["r.squared"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["adj.r.squared"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sigma"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["nobs"],"name":[6],"type":["int"],"align":["right"]}],"data":[{"1":"0.5881145","2":"0.5880941","3":"0.2228013","4":"28699.98","5":"0","6":"60304"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardised coefficients for effect size comparison</span></span>
+<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a>m4_std <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log10</span>(width) <span class="sc">~</span> year_scaled <span class="sc">+</span> height_scaled <span class="sc">+</span> acquisition_era,</span>
+<span id="cb98-3"><a href="#cb98-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">data =</span> q4_data)</span>
+<span id="cb98-4"><a href="#cb98-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(m4_std, <span class="at">conf.int =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb98-5"><a href="#cb98-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">4</span>,</span>
+<span id="cb98-6"><a href="#cb98-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">caption =</span> <span class="st">"Table 9: Q4 standardised coefficients."</span>) <span class="sc">|&gt;</span></span>
+<span id="cb98-7"><a href="#cb98-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"condensed"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table class="table table-striped table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Table 9: Q4 standardised coefficients.</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">term</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">estimate</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">std.error</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">statistic</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">p.value</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">conf.low</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">conf.high</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">2.2985</td>
+<td style="text-align: right;">0.0015</td>
+<td style="text-align: right;">1560.8529</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2.2957</td>
+<td style="text-align: right;">2.3014</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">year_scaled</td>
+<td style="text-align: right;">0.0955</td>
+<td style="text-align: right;">0.0017</td>
+<td style="text-align: right;">56.8580</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0922</td>
+<td style="text-align: right;">0.0988</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">height_scaled</td>
+<td style="text-align: right;">0.1533</td>
+<td style="text-align: right;">0.0010</td>
+<td style="text-align: right;">155.3736</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.1513</td>
+<td style="text-align: right;">0.1552</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">acquisition_eraPost-1950</td>
+<td style="text-align: right;">0.1649</td>
+<td style="text-align: right;">0.0036</td>
+<td style="text-align: right;">46.3202</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.1579</td>
+<td style="text-align: right;">0.1718</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</section>
+<section id="assumptions-3" class="level4">
+<h4 class="anchored" data-anchor-id="assumptions-3">Assumptions</h4>
+<p>All the assumptions in Question 3 are true, and:</p>
+<ol start="4" type="1">
+<li>No multicollinearity: Predictors are not highly correlated with each other to the extent that the coefficient estimates are not stable.</li>
+<li>Additivity: The effect of the predictors on <code>width</code> is approximately additive (no interaction terms needed at this stage).</li>
+</ol>
+</section>
+<section id="diagnostics-and-model-checks-3" class="level4">
+<h4 class="anchored" data-anchor-id="diagnostics-and-model-checks-3">Diagnostics and Model Checks</h4>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m4, <span class="at">main =</span> <span class="st">"Q4 regression diagnostics"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="sap_tate_collection_files/figure-html/q4-diagnostics-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Variance Inflation Factors:</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Variance Inflation Factors:</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(m4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>           year          height acquisition_era 
+       3.426947        1.182246        3.380793 </code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bptest</span>(m4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    studentized Breusch-Pagan test
+
+data:  m4
+BP = 12330, df = 3, p-value &lt; 2.2e-16</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Influential observations (Cook's D &gt; 4/n):"</span>,</span>
+<span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>(<span class="fu">cooks.distance</span>(m4) <span class="sc">&gt;</span> <span class="dv">4</span> <span class="sc">/</span> <span class="fu">nrow</span>(q4_data)), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Influential observations (Cook's D &gt; 4/n): 3585 </code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">avPlots</span>(m4, <span class="at">main =</span> <span class="st">"Added-variable plots — Q4 predictors"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="sap_tate_collection_files/figure-html/q4-diagnostics-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="fallback-strategy-3" class="level4">
+<h4 class="anchored" data-anchor-id="fallback-strategy-3">Fallback Strategy</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Problem detected</th>
+<th>Strategy</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Non-normal residuals / heteroscedasticity</td>
+<td>Log₁₀-transform <code>width</code>; re-run model</td>
+</tr>
+<tr class="even">
+<td>High multicollinearity (VIF &gt; 10)</td>
+<td>Remove or combine collinear predictors; report correlation matrix</td>
+</tr>
+<tr class="odd">
+<td>Many influential points</td>
+<td>Robust regression using <code>MASS::rlm()</code></td>
+</tr>
+<tr class="even">
+<td>Non-linearity in <code>year</code> or <code>height</code></td>
+<td>Add quadratic term or use generalised additive model (<code>mgcv::gam()</code>)</td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a>m4_robust <span class="ot">&lt;-</span> <span class="fu">rlm</span>(<span class="fu">log10</span>(width) <span class="sc">~</span> year <span class="sc">+</span> height <span class="sc">+</span> acquisition_era,</span>
+<span id="cb109-2"><a href="#cb109-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> q4_data)</span>
+<span id="cb109-3"><a href="#cb109-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m4_robust)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call: rlm(formula = log10(width) ~ year + height + acquisition_era, 
+    data = q4_data)
+Residuals:
+       Min         1Q     Median         3Q        Max 
+-20.663292  -0.125465   0.006656   0.105831   1.612497 
+
+Coefficients:
+                         Value    Std. Error t value 
+(Intercept)                0.0190   0.0324     0.5877
+year                       0.0011   0.0000    63.8912
+height                     0.0005   0.0000   384.6914
+acquisition_eraPost-1950   0.1230   0.0027    45.7359
+
+Residual standard error: 0.1761 on 60300 degrees of freedom</code></pre>
+</div>
+</div>
+</section>
+<section id="reporting-and-interpretation-3" class="level4">
+<h4 class="anchored" data-anchor-id="reporting-and-interpretation-3">Reporting and Interpretation</h4>
+<p>Results will be reported as a regression table (Table format) with the unstandardised coefficients, standardised coefficients, 95% confidence intervals, t-statistics, and p-values, as well as <span class="math inline">\(R^2\)</span>, adjusted <span class="math inline">\(R^2\)</span> and model F-statistic. An added-variable plot will illustrate the partial relationship of each predictor with <code>width</code> controlling for the others. The correlation between height and aspect ratio would suggest that a positive coefficient for `height’ is to be expected and is statistically significant. If there is an independent temporal trend in addition to size correlation, there should be a significant coefficient for the year. The coefficient of the copyright_status variable would tell us if there is a systematic difference in width by year and height between copyrighted and non-copyrighted works, a more subtle result than the bivariate comparison in Question 1.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="conclusions" class="level2">
+<h2 class="anchored" data-anchor-id="conclusions">Conclusions</h2>
+<p>This Statistical Analysis Plan describes a principled and reproducible approach to investigation of four different questions regarding the Tate art collection. The plan starts with simple group comparison (Q1) and advances to categorical association (Q2) to simple and multiple regression (Q3, Q4), which are increasingly complex analyses that correspond to the multi-faceted nature of the data. In each case the proposed primary method is based on the type of variables, the research question and sensible prior knowledge about the structure of the data. Extensive diagnostic procedures are explicitly defined in advance to protect against assumption violations, and pre-defined fallback strategies ensure that the analysis is valid even if the distributional assumptions are violated. The messy variable medium and the significant amount of missing data in dimensional variables (thumbnailCopyright) have been given special attention as they are variables where preparation decisions could significantly impact results if not dealt with thoughtfully. The entire analytical pipeline is documented and can be reproduced from scratch using the reproducible R code in this document and open-source R packages.</p>
+<hr>
+</section>
+<section id="literature-cited" class="level2">
+<h2 class="anchored" data-anchor-id="literature-cited">Literature Cited</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-agresti2002" class="csl-entry" role="listitem">
+Agresti, A. (2002). <em>Categorical data analysis</em> (2nd ed.). John Wiley &amp; Sons.
+</div>
+<div id="ref-cochran1954" class="csl-entry" role="listitem">
+Cochran, W. G. (1954). Some methods for strengthening the common chi-squared tests. <em>Biometrics</em>, <em>10</em>(4), 417–451.
+</div>
+<div id="ref-cohen1988" class="csl-entry" role="listitem">
+Cohen, J. (1988). <em>Statistical power analysis for the behavioral sciences</em> (2nd ed.). Lawrence Erlbaum Associates.
+</div>
+<div id="ref-elkins2008" class="csl-entry" role="listitem">
+Elkins, J. (2008). <em>Art history versus aesthetics</em>. Routledge.
+</div>
+<div id="ref-field2013" class="csl-entry" role="listitem">
+Field, A., Miles, J., &amp; Field, Z. (2013). <em>Discovering statistics using r</em>. SAGE Publications.
+</div>
+<div id="ref-hollander2013" class="csl-entry" role="listitem">
+Hollander, M., Wolfe, D. A., &amp; Chicken, E. (2013). <em>Nonparametric statistical methods</em> (3rd ed.). John Wiley &amp; Sons.
+</div>
+<div id="ref-muijs2010" class="csl-entry" role="listitem">
+Muijs, D. (2010). <em>Doing quantitative research in education with SPSS</em> (2nd ed.). SAGE Publications.
+</div>
+<div id="ref-tate2014" class="csl-entry" role="listitem">
+Tate. (2014). <em>Tate collection metadata</em>. GitHub repository. <a href="https://github.com/tategallery/collection">https://github.com/tategallery/collection</a>
+</div>
+<div id="ref-tukey1977" class="csl-entry" role="listitem">
+Tukey, J. W. (1977). <em>Exploratory data analysis</em>. Addison-Wesley.
+</div>
+<div id="ref-wickham2019" class="csl-entry" role="listitem">
+Wickham, H., &amp; Grolemund, G. (2019). <em>R for data science</em>. O’Reilly Media. <a href="https://r4ds.had.co.nz">https://r4ds.had.co.nz</a>
+</div>
+</div>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
