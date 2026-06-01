@@ -1,5 +1,5 @@
 # Thinking with Data - SAP
-
+ 
 A collection of SAP-focused data analysis, reporting, and business intelligence examples that demonstrate how data can be transformed into actionable business insights.
 
 ## Overview
